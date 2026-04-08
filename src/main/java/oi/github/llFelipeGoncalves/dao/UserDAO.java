@@ -34,7 +34,7 @@ public class UserDAO {
 
     public UserModel findById(final long id) {
         verifyStorage();
-        String message = String.format("Não existe usuário com o %s cadastrado", id);
+        String message = String.format("Não existe usuário com o id:%s cadastrado", id);
         return models.stream()
                 .filter(u -> u.getId()==id)
                 .findFirst()

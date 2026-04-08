@@ -1,6 +1,8 @@
 package oi.github.llFelipeGoncalves;
 
 import oi.github.llFelipeGoncalves.dao.UserDAO;
+import oi.github.llFelipeGoncalves.exceptions.EmptyStorageException;
+import oi.github.llFelipeGoncalves.exceptions.UserNotFoundException;
 import oi.github.llFelipeGoncalves.models.MenuOptions;
 import oi.github.llFelipeGoncalves.models.UserModel;
 
@@ -32,18 +34,30 @@ public class Main {
                     System.out.printf("Usuário salvo... %s", user);
                 }
                 case UPDATE -> {
-                    UserModel user = dao.update(requestToUpdate());
-                    System.out.printf("Usuário salvo... %s", user);
+                    try {
+                        UserModel user = dao.update(requestToUpdate());
+                        System.out.printf("Usuário salvo... %s", user);
+                    } catch (UserNotFoundException | EmptyStorageException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
                 case DELETE -> {
-                    dao.delete(requestId());
-                    System.out.println("Usuário deletado...");
+                    try {
+                        dao.delete(requestId());
+                        System.out.println("Usuário deletado...");
+                    } catch (UserNotFoundException | EmptyStorageException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
                 case FIND_BY_ID -> {
+                    try {
                         var id = requestId();
                         var user = dao.findById(id);
                         System.out.printf("Usuário com id %s", id);
                         System.out.println(user);
+                    } catch (UserNotFoundException | EmptyStorageException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
 
                 case FIND_ALL -> {
