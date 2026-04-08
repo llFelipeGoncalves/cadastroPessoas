@@ -9,7 +9,7 @@ public class UserValidator {
 
     }
 
-    public static void VerifyModel(final UserModel model) throws ValidatorException {
+    public static void verifyModel(final UserModel model) throws ValidatorException {
 
         if (stringIsBlank(model.getName()))
             throw new ValidatorException("Informe um nome válido...");

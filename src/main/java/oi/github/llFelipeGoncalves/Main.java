@@ -3,6 +3,7 @@ package oi.github.llFelipeGoncalves;
 import oi.github.llFelipeGoncalves.dao.UserDAO;
 import oi.github.llFelipeGoncalves.exceptions.EmptyStorageException;
 import oi.github.llFelipeGoncalves.exceptions.UserNotFoundException;
+import oi.github.llFelipeGoncalves.exceptions.ValidatorException;
 import oi.github.llFelipeGoncalves.models.MenuOptions;
 import oi.github.llFelipeGoncalves.models.UserModel;
 
@@ -10,6 +11,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
+
+import static oi.github.llFelipeGoncalves.validator.UserValidator.verifyModel;
 
 public class Main {
     private static final UserDAO dao = new UserDAO();
@@ -30,15 +33,19 @@ public class Main {
             MenuOptions selectOption = MenuOptions.values()[userInput - 1];
             switch (selectOption) {
                 case SAVE -> {
-                    UserModel user = dao.save(requestToSave());
-                    System.out.printf("Usuário salvo... %s", user);
+                    try {
+                        UserModel user = dao.save(requestToSave());
+                        System.out.printf("Usuário salvo... %s", user);
+                    } catch (ValidatorException e) {
+                        System.err.println(e.getMessage());
+                    }
                 }
                 case UPDATE -> {
                     try {
                         UserModel user = dao.update(requestToUpdate());
                         System.out.printf("Usuário salvo... %s", user);
-                    } catch (UserNotFoundException | EmptyStorageException e) {
-                        System.out.println(e.getMessage());
+                    } catch (UserNotFoundException | EmptyStorageException | ValidatorException e) {
+                        System.err.println(e.getMessage());
                     }
                 }
                 case DELETE -> {
@@ -46,7 +53,7 @@ public class Main {
                         dao.delete(requestId());
                         System.out.println("Usuário deletado...");
                     } catch (UserNotFoundException | EmptyStorageException e) {
-                        System.out.println(e.getMessage());
+                        System.err.println(e.getMessage());
                     }
                 }
                 case FIND_BY_ID -> {
@@ -56,7 +63,7 @@ public class Main {
                         System.out.printf("Usuário com id %s", id);
                         System.out.println(user);
                     } catch (UserNotFoundException | EmptyStorageException e) {
-                        System.out.println(e.getMessage());
+                        System.err.println(e.getMessage());
                     }
                 }
 
@@ -76,7 +83,7 @@ public class Main {
         return scanner.nextLong();
     }
 
-    private static UserModel requestToSave() {
+    private static UserModel requestToSave() throws ValidatorException {
         System.out.println("informe o nome do usuário");
         String name = scanner.next();
         System.out.println("informe o e-mail do usuário");
@@ -86,11 +93,18 @@ public class Main {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthday = LocalDate.parse(birthdayString, formatter);
 
-        return new UserModel(0, name, email, birthday);
+        return validadeInputs(0, name, email, birthday);
 
     }
 
-    private static UserModel requestToUpdate() {
+    private static UserModel validadeInputs(final long id, final String name,
+                                              final String email, final LocalDate birthday) throws ValidatorException {
+         UserModel user = new UserModel(0, name, email, birthday);
+         verifyModel(user);
+         return user;
+    }
+
+    private static UserModel requestToUpdate() throws ValidatorException {
         System.out.println("informe o identificador do usuário >_: ");
         long id = scanner.nextLong();
         System.out.println("informe o nome do usuário >_: ");
@@ -102,8 +116,7 @@ public class Main {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate birthday = LocalDate.parse(birthdayString, formatter);
 
-        return new UserModel(id, name, email, birthday);
-
+        return validadeInputs(id, name, email, birthday);
     }
 
 }
