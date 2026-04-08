@@ -1,5 +1,6 @@
 package oi.github.llFelipeGoncalves.dao;
 
+import oi.github.llFelipeGoncalves.exceptions.EmptyStorageException;
 import oi.github.llFelipeGoncalves.exceptions.UserNotFoundException;
 import oi.github.llFelipeGoncalves.models.UserModel;
 
@@ -32,6 +33,7 @@ public class UserDAO {
     }
 
     public UserModel findById(final long id) {
+        verifyStorage();
         String message = String.format("Não existe usuário com o %s cadastrado", id);
         return models.stream()
                 .filter(u -> u.getId()==id)
@@ -41,7 +43,19 @@ public class UserDAO {
     }
 
     public List<UserModel> findAll() {
-        return models;
+        List<UserModel> result;
+        try {
+            verifyStorage();
+            result = models;
+        } catch (EmptyStorageException e) {
+            e.printStackTrace();
+            result = new ArrayList<>();
+        }
+        return result;
+    }
+
+    public void verifyStorage() {
+        if (models.isEmpty()) throw new EmptyStorageException("O armazenamento está vazio");
     }
 
 }

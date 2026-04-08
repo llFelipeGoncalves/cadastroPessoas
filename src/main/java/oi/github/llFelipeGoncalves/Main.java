@@ -40,10 +40,10 @@ public class Main {
                     System.out.println("Usuário deletado...");
                 }
                 case FIND_BY_ID -> {
-                    var id = requestId();
-                    var user = dao.findById(id);
-                    System.out.printf("Usuário com id %s", id);
-                    System.out.println(user);
+                        var id = requestId();
+                        var user = dao.findById(id);
+                        System.out.printf("Usuário com id %s", id);
+                        System.out.println(user);
                 }
 
                 case FIND_ALL -> {
