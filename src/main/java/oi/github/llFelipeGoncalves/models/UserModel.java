@@ -1,7 +1,6 @@
 package oi.github.llFelipeGoncalves.models;
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.Objects;
 
 public class UserModel {

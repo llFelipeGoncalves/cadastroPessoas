@@ -1,7 +1,13 @@
 package oi.github.llFelipeGoncalves.validator;
 
+import oi.github.llFelipeGoncalves.exceptions.EmptyStorageException;
 import oi.github.llFelipeGoncalves.exceptions.ValidatorException;
 import oi.github.llFelipeGoncalves.models.UserModel;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.List;
 
 public class UserValidator {
 
@@ -23,6 +29,19 @@ public class UserValidator {
         if ((!model.getEmail().contains("@")) || (!model.getEmail().contains(".")))
             throw new ValidatorException("Informe um e-mail valido...");
 
+    }
+
+    public static LocalDate parseAndValidateBirthday(String birthdayString) throws ValidatorException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try {
+            return LocalDate.parse(birthdayString, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ValidatorException("Erro: O formato da data está incorreto. Use dd/MM/yyyy");
+        }
+    }
+
+    public static void verifyStorage(List<UserModel> modelsList) {
+        if (modelsList.isEmpty()) throw new EmptyStorageException("O armazenamento está vazio");
     }
 
     private static boolean stringIsBlank(final String value){

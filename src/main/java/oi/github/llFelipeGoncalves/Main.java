@@ -9,9 +9,11 @@ import oi.github.llFelipeGoncalves.models.UserModel;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
+import static oi.github.llFelipeGoncalves.validator.UserValidator.parseAndValidateBirthday;
 import static oi.github.llFelipeGoncalves.validator.UserValidator.verifyModel;
 
 public class Main {
@@ -36,7 +38,7 @@ public class Main {
                     try {
                         UserModel user = dao.save(requestToSave());
                         System.out.printf("Usuário salvo... %s", user);
-                    } catch (ValidatorException e) {
+                    } catch (ValidatorException | DateTimeParseException e) {
                         System.err.println(e.getMessage());
                     }
                 }
@@ -44,7 +46,7 @@ public class Main {
                     try {
                         UserModel user = dao.update(requestToUpdate());
                         System.out.printf("Usuário salvo... %s", user);
-                    } catch (UserNotFoundException | EmptyStorageException | ValidatorException e) {
+                    } catch (UserNotFoundException | EmptyStorageException | ValidatorException | DateTimeParseException e) {
                         System.err.println(e.getMessage());
                     }
                 }
@@ -90,8 +92,7 @@ public class Main {
         String email = scanner.next();
         System.out.println("informe a data de aniversário do usuário");
         String birthdayString = scanner.next();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate birthday = LocalDate.parse(birthdayString, formatter);
+        LocalDate birthday = parseAndValidateBirthday(birthdayString);
 
         return validadeInputs(0, name, email, birthday);
 
@@ -113,8 +114,7 @@ public class Main {
         String email = scanner.next();
         System.out.println("informe a data de aniversário do usuário >_: ");
         String birthdayString = scanner.next();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate birthday = LocalDate.parse(birthdayString, formatter);
+        LocalDate birthday = parseAndValidateBirthday(birthdayString);
 
         return validadeInputs(id, name, email, birthday);
     }

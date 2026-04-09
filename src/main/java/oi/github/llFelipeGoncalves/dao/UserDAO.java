@@ -7,6 +7,8 @@ import oi.github.llFelipeGoncalves.models.UserModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static oi.github.llFelipeGoncalves.validator.UserValidator.verifyStorage;
+
 
 public class UserDAO {
 
@@ -33,7 +35,7 @@ public class UserDAO {
     }
 
     public UserModel findById(final long id) {
-        verifyStorage();
+        verifyStorage(this.models);
         String message = String.format("Não existe usuário com o id:%s cadastrado", id);
         return models.stream()
                 .filter(u -> u.getId()==id)
@@ -45,17 +47,13 @@ public class UserDAO {
     public List<UserModel> findAll() {
         List<UserModel> result;
         try {
-            verifyStorage();
+            verifyStorage(this.models);
             result = models;
         } catch (EmptyStorageException e) {
             e.printStackTrace();
             result = new ArrayList<>();
         }
         return result;
-    }
-
-    public void verifyStorage() {
-        if (models.isEmpty()) throw new EmptyStorageException("O armazenamento está vazio");
     }
 
 }
