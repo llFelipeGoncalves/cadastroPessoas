@@ -4,7 +4,7 @@ import oi.github.llFelipeGoncalves.core.entities.User;
 import oi.github.llFelipeGoncalves.core.services.UserService;
 import oi.github.llFelipeGoncalves.exceptions.UserNotFoundException;
 import oi.github.llFelipeGoncalves.exceptions.ValidatorException;
-import oi.github.llFelipeGoncalves.models.MenuOptions;
+import oi.github.llFelipeGoncalves.ui.MenuOptions;
 import oi.github.llFelipeGoncalves.ui.views.ConsoleView;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package oi.github.llFelipeGoncalves.ui.views;
 
 import oi.github.llFelipeGoncalves.core.entities.User;
-import oi.github.llFelipeGoncalves.models.MenuOptions;
+import oi.github.llFelipeGoncalves.ui.MenuOptions;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
