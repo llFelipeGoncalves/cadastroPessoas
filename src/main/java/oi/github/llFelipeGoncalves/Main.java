@@ -85,6 +85,13 @@ public class Main {
         return scanner.nextLong();
     }
 
+    private static UserModel validadeInputs(final long id, final String name,
+                                            final String email, final LocalDate birthday) throws ValidatorException {
+        UserModel user = new UserModel(0, name, email, birthday);
+        verifyModel(user);
+        return user;
+    }
+
     private static UserModel requestToSave() throws ValidatorException {
         System.out.println("informe o nome do usuário");
         String name = scanner.next();
@@ -96,13 +103,6 @@ public class Main {
 
         return validadeInputs(0, name, email, birthday);
 
-    }
-
-    private static UserModel validadeInputs(final long id, final String name,
-                                              final String email, final LocalDate birthday) throws ValidatorException {
-         UserModel user = new UserModel(0, name, email, birthday);
-         verifyModel(user);
-         return user;
     }
 
     private static UserModel requestToUpdate() throws ValidatorException {
