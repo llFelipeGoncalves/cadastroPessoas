@@ -1,6 +1,6 @@
 package oi.github.llFelipeGoncalves;
 
-import oi.github.llFelipeGoncalves.core.repositories.InMemoryUserRepository;
+import oi.github.llFelipeGoncalves.core.factories.RepositoryFactory;
 import oi.github.llFelipeGoncalves.core.repositories.UserRepository;
 import oi.github.llFelipeGoncalves.core.services.UserService;
 import oi.github.llFelipeGoncalves.core.services.UserServiceImpl;
@@ -17,7 +17,7 @@ import oi.github.llFelipeGoncalves.ui.views.ConsoleView;
 public class Main {
     public static void main(String[] args) {
         // Configuração das dependências (Dependency Injection)
-        UserRepository userRepository = new InMemoryUserRepository();
+        UserRepository userRepository = RepositoryFactory.createUserRepository();
         UserValidator userValidator = new DefaultUserValidator();
         UserService userService = new UserServiceImpl(userRepository, userValidator);
         ConsoleView consoleView = new ConsoleView();
