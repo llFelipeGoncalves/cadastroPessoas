@@ -31,7 +31,7 @@ public class ConsoleView {
         try {
             int choice = Integer.parseInt(scanner.nextLine().trim());
             return MenuOptions.fromValue(choice);
-        } catch (NumberFormatException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return MenuOptions.INVALID;
         }
     }
