@@ -26,7 +26,7 @@ public class ConsoleView {
   }
 
   public MenuOptions getMenuOption() {
-    int userInput = Interger.parseInt(scanner.nextInt());
+    int userInput = Integer.parseInt(scanner.nextLine());
     return MenuOptions.fromValue(userInput);
   }
 
