@@ -1,48 +1,50 @@
 package oi.github.llFelipeGoncalves.core.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import oi.github.llFelipeGoncalves.core.dao.UserDAO;
+import oi.github.llFelipeGoncalves.core.exceptions.UserNotFoundException;
+import oi.github.llFelipeGoncalves.core.exceptions.ValidatorException;
 import oi.github.llFelipeGoncalves.core.models.UserModel;
 import oi.github.llFelipeGoncalves.core.validator.UserValidator;
 
 public class UserService implements IuserService {
 
-  private final UserDAO user;
-  private final UserValidator validator;
+    private final UserDAO userDAO;
 
-  public UserService(UserDAO user, UserValidator validator) {
-      this.user = user;
-      this.validator = validator;
-  }
-
-    @Override
-    public UserModel save(UserModel user) {
-        
-        return null;
+    public UserService(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
     @Override
-    public UserModel update(UserModel user) {
-        // Implementation for updating user
-        return null;
+    public UserModel save(String name, String email, LocalDate birthday) throws ValidatorException {
+        UserModel user = new UserModel(0, name, email, birthday);
+        UserValidator.verifyModel(user);
+        return userDAO.save(user);
+    }
+
+    @Override
+    public UserModel update(long id, String name, String email, LocalDate birthday) 
+            throws ValidatorException, UserNotFoundException {
+        UserModel user = new UserModel(id, name, email, birthday);
+        UserValidator.verifyModel(user);
+        return userDAO.update(user);
     }
 
     @Override
     public void delete(long id) {
-        // Implementation for deleting user
+        userDAO.delete(id);
     }
 
     @Override
     public UserModel findById(long id) {
-        // Implementation for finding user by ID
-        return null;
+        return userDAO.findById(id);
     }
 
     @Override
     public List<UserModel> findAll() {
-        // Implementation for finding all users
-        return null;
+        return userDAO.findAll();
     }
 
 }
