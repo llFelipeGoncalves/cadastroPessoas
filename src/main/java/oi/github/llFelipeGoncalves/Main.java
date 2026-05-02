@@ -8,7 +8,6 @@ import oi.github.llFelipeGoncalves.models.MenuOptions;
 import oi.github.llFelipeGoncalves.models.UserModel;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +19,7 @@ public class Main {
     private static final UserDAO dao = new UserDAO();
     private static final Scanner scanner = new Scanner(System.in);
 
-     static void main() {
+     public static void main(String[] args) {
 
         while (true) {
             System.out.println("\n============================================");
