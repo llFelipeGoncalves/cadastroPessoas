@@ -22,6 +22,7 @@ public class UserController {
   }
 
   public void handleMenuOption(MenuOptions option) {
+    option = MenuOptions.fromValue(option.getValue());
     switch (option) {
       case SAVE -> handleSave();
       case UPDATE -> handleUpdate();
@@ -29,6 +30,7 @@ public class UserController {
       case FIND_BY_ID -> handleFindById();
       case FIND_ALL -> handleFindAll();
       case EXIT -> System.exit(0);
+      case INVALID -> consoleView.displayError("Opção inválida. Tente novamente.");
     }
   }
 
