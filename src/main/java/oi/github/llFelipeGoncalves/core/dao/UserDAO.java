@@ -1,13 +1,13 @@
-package oi.github.llFelipeGoncalves.dao;
+package oi.github.llFelipeGoncalves.core.dao;
 
-import oi.github.llFelipeGoncalves.exceptions.EmptyStorageException;
-import oi.github.llFelipeGoncalves.exceptions.UserNotFoundException;
-import oi.github.llFelipeGoncalves.models.UserModel;
+import oi.github.llFelipeGoncalves.core.exceptions.EmptyStorageException;
+import oi.github.llFelipeGoncalves.core.exceptions.UserNotFoundException;
+import oi.github.llFelipeGoncalves.core.models.UserModel;
+
+import static oi.github.llFelipeGoncalves.core.validator.UserValidator.verifyStorage;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static oi.github.llFelipeGoncalves.validator.UserValidator.verifyStorage;
 
 
 public class UserDAO {
@@ -48,7 +48,7 @@ public class UserDAO {
         List<UserModel> result;
         try {
             verifyStorage(this.models);
-            result = models;
+            result = new ArrayList<>(models);
         } catch (EmptyStorageException e) {
             e.printStackTrace();
             result = new ArrayList<>();

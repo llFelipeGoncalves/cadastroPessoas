@@ -1,19 +1,19 @@
 package oi.github.llFelipeGoncalves;
 
-import oi.github.llFelipeGoncalves.dao.UserDAO;
-import oi.github.llFelipeGoncalves.exceptions.EmptyStorageException;
-import oi.github.llFelipeGoncalves.exceptions.UserNotFoundException;
-import oi.github.llFelipeGoncalves.exceptions.ValidatorException;
-import oi.github.llFelipeGoncalves.models.MenuOptions;
-import oi.github.llFelipeGoncalves.models.UserModel;
+import oi.github.llFelipeGoncalves.core.dao.UserDAO;
+import oi.github.llFelipeGoncalves.core.exceptions.EmptyStorageException;
+import oi.github.llFelipeGoncalves.core.exceptions.UserNotFoundException;
+import oi.github.llFelipeGoncalves.core.exceptions.ValidatorException;
+import oi.github.llFelipeGoncalves.core.models.MenuOptions;
+import oi.github.llFelipeGoncalves.core.models.UserModel;
+
+import static oi.github.llFelipeGoncalves.core.validator.UserValidator.parseAndValidateBirthday;
+import static oi.github.llFelipeGoncalves.core.validator.UserValidator.verifyModel;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
-
-import static oi.github.llFelipeGoncalves.validator.UserValidator.parseAndValidateBirthday;
-import static oi.github.llFelipeGoncalves.validator.UserValidator.verifyModel;
 
 public class Main {
     private static final UserDAO dao = new UserDAO();

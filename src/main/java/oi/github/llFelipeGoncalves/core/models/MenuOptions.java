@@ -1,4 +1,4 @@
-package oi.github.llFelipeGoncalves.models;
+package oi.github.llFelipeGoncalves.core.models;
 
 public enum MenuOptions {
 

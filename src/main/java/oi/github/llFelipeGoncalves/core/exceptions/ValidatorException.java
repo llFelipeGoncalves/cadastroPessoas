@@ -1,4 +1,4 @@
-package oi.github.llFelipeGoncalves.exceptions;
+package oi.github.llFelipeGoncalves.core.exceptions;
 
 public class ValidatorException extends Exception {
     public ValidatorException(String message) {

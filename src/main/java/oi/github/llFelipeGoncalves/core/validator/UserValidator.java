@@ -1,8 +1,8 @@
-package oi.github.llFelipeGoncalves.validator;
+package oi.github.llFelipeGoncalves.core.validator;
 
-import oi.github.llFelipeGoncalves.exceptions.EmptyStorageException;
-import oi.github.llFelipeGoncalves.exceptions.ValidatorException;
-import oi.github.llFelipeGoncalves.models.UserModel;
+import oi.github.llFelipeGoncalves.core.exceptions.EmptyStorageException;
+import oi.github.llFelipeGoncalves.core.exceptions.ValidatorException;
+import oi.github.llFelipeGoncalves.core.models.UserModel;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

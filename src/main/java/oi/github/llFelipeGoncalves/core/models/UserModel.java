@@ -1,4 +1,4 @@
-package oi.github.llFelipeGoncalves.models;
+package oi.github.llFelipeGoncalves.core.models;
 
 import java.time.LocalDate;
 import java.util.Objects;
