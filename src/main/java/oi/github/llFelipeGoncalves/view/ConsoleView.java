@@ -26,8 +26,8 @@ public class ConsoleView {
   }
 
   public MenuOptions getMenuOption() {
-    int userInput = scanner.nextInt();
-    return MenuOptions.values()[userInput - 1];
+    int userInput = Interger.parseInt(scanner.nextInt());
+    return MenuOptions.fromValue(userInput);
   }
 
   public long requestId() {

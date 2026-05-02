@@ -10,7 +10,7 @@ public enum MenuOptions {
     EXIT(6),
     INVALID(-1);
 
-    int value;
+    private final int value;
 
     MenuOptions(int value) {
         this.value = value;

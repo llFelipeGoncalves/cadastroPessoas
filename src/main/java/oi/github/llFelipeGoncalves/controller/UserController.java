@@ -22,7 +22,6 @@ public class UserController {
   }
 
   public void handleMenuOption(MenuOptions option) {
-    option = MenuOptions.fromValue(option.getValue());
     switch (option) {
       case SAVE -> handleSave();
       case UPDATE -> handleUpdate();
