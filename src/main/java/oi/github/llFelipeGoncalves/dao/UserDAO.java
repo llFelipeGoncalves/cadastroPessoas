@@ -9,7 +9,6 @@ import java.util.List;
 
 import static oi.github.llFelipeGoncalves.validator.UserValidator.verifyStorage;
 
-
 public class UserDAO {
 
     private long nextId = 1L;
@@ -38,7 +37,7 @@ public class UserDAO {
         verifyStorage(this.models);
         String message = String.format("Não existe usuário com o id:%s cadastrado", id);
         return models.stream()
-                .filter(u -> u.getId()==id)
+                .filter(u -> u.getId() == id)
                 .findFirst()
                 .orElseThrow(() -> new UserNotFoundException(message));
 
@@ -48,7 +47,7 @@ public class UserDAO {
         List<UserModel> result;
         try {
             verifyStorage(this.models);
-            result = models;
+            result = new ArrayList<>(models); // Retorna cópia para proteger a lista interna
         } catch (EmptyStorageException e) {
             e.printStackTrace();
             result = new ArrayList<>();
