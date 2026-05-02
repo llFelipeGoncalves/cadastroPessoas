@@ -9,6 +9,7 @@ import oi.github.llFelipeGoncalves.exceptions.ValidatorException;
 import java.util.List;
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 public interface UserService {
     void createUser(User user) throws ValidatorException;
     User getUserById(Long id) throws UserNotFoundException;

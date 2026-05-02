@@ -6,6 +6,7 @@ import oi.github.llFelipeGoncalves.exceptions.ValidatorException;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("unused")
 public interface UserValidator {
     void validate(User user) throws ValidatorException;
 }

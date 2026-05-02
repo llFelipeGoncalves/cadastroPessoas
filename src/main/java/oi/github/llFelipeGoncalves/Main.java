@@ -26,3 +26,4 @@ public class Main {
         UserController controller = new UserController(userService, consoleView);
         controller.run();
     }
+}
