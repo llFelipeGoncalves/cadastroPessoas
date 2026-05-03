@@ -10,7 +10,7 @@ import java.util.List;
 import static oi.github.llFelipeGoncalves.validator.UserValidator.verifyStorage;
 
 
-public class UserDAO {
+public class UserDAO implements IUserDAO{
 
     private long nextId = 1L;
 
