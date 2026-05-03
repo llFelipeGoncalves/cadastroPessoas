@@ -17,6 +17,7 @@ public class ConsoleViews {
     System.out.println("3 - Excluir");
     System.out.println("4 - Buscar por identificador ");
     System.out.println("5 - Listar");
+    System.out.println("6 - Sair");
   }
   
   public MenuOptions getMenuOptions() {

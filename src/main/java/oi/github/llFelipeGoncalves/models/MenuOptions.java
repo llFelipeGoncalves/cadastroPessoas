@@ -7,6 +7,7 @@ public enum MenuOptions {
     DELETE(3),
     FIND_BY_ID(4),
     FIND_ALL(5),
+    EXIT(6),
     INVALID(-1);
 
     private final int value;
