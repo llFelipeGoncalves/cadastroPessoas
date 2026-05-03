@@ -28,6 +28,7 @@ public class UserController {
       case DELETE -> handleDelete();
       case FIND_BY_ID -> handleFindById();
       case FIND_ALL -> handleFindAll();
+      case EXIT -> System.exit(0);
       case INVALID -> consoleView.displayError("Opção inválida!");
     }
   }
