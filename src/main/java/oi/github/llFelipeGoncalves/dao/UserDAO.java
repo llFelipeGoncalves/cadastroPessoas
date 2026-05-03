@@ -48,7 +48,7 @@ public class UserDAO {
         List<UserModel> result;
         try {
             verifyStorage(this.models);
-            result = models;
+            result = new ArrayList<>(models);
         } catch (EmptyStorageException e) {
             e.printStackTrace();
             result = new ArrayList<>();
