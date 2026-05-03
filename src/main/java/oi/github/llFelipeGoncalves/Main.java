@@ -22,14 +22,7 @@ public class Main {
      public static void main(String[] args) {
 
         while (true) {
-            System.out.println("\n============================================");
-            System.out.println("Bem vindo ao sistema de cadastro de usuários");
-            System.out.println("1 - Cadastro");
-            System.out.println("2 - Atualizar");
-            System.out.println("3 - Excluir");
-            System.out.println("4 - Buscar por identificador ");
-            System.out.println("5 - Listar");
-            System.out.println("6 - Sair");
+            
             int userInput = scanner.nextInt();
             MenuOptions selectOption = MenuOptions.values()[userInput - 1];
             switch (selectOption) {
